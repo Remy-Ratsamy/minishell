@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_cd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gechavia <gechavia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reratsam <reratsam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:45:57 by gechavia          #+#    #+#             */
-/*   Updated: 2026/02/19 13:18:11 by gechavia         ###   ########.fr       */
+/*   Updated: 2026/04/23 14:13:08 by reratsam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	builtin_cd(t_command *cmd, char ***envp)
 	int		should_free;
 
 	if (cmd->argv[1] && cmd->argv[2])
-		return (ft_putendl_fd("minishell: cd: too many arguments", 2), 2);
+		return (ft_putendl_fd("minishell: cd: too many arguments", 2), 1);
 	if (!getcwd(oldcwd, sizeof(oldcwd)))
 		return (perror("getcwd"), 1);
 	path = get_cd_path(cmd, *envp, &should_free);

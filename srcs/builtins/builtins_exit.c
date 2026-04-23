@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_exit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gechavia <gechavia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reratsam <reratsam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 10:54:13 by gechavia          #+#    #+#             */
-/*   Updated: 2026/03/14 20:07:54 by gechavia         ###   ########.fr       */
+/*   Updated: 2026/04/23 14:13:18 by reratsam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	builtin_exit(t_command *cmd, t_cleanup *cleanup)
 		cleanup_and_exit(cleanup, 2);
 	}
 	if (cmd->argv[2])
-		return (ft_putendl_fd("minishell: exit: too many arguments", 2), 2);
+		return (ft_putendl_fd("minishell: exit: too many arguments", 2), 1);
 	exit_code = get_exit_value(cmd->argv[1]);
 	g_exit_status = exit_code;
 	cleanup_and_exit(cleanup, exit_code);
