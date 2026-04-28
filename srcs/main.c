@@ -6,7 +6,7 @@
 /*   By: reratsam <reratsam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 17:49:44 by gechavia          #+#    #+#             */
-/*   Updated: 2026/04/20 15:05:46 by reratsam         ###   ########.fr       */
+/*   Updated: 2026/04/28 19:46:06 by reratsam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	handle_empty_line(char *line)
 	if (line == NULL)
 	{
 		printf("exit\n");
-		clear_history();
+		rl_clear_history();
 		return (1);
 	}
 	if (line[0] == '\0')

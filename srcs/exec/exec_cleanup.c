@@ -6,7 +6,7 @@
 /*   By: reratsam <reratsam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 15:37:06 by gechavia          #+#    #+#             */
-/*   Updated: 2026/04/20 15:08:37 by reratsam         ###   ########.fr       */
+/*   Updated: 2026/04/28 19:46:11 by reratsam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ void	cleanup_and_exit(t_cleanup *cleanup, int status)
 	if (cleanup->ast)
 		free_ast(cleanup->ast);
 	free_envp(cleanup->envp);
-	clear_history();
+	rl_clear_history();
 	exit(status);
 }

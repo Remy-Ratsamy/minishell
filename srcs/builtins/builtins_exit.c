@@ -6,7 +6,7 @@
 /*   By: reratsam <reratsam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 10:54:13 by gechavia          #+#    #+#             */
-/*   Updated: 2026/04/23 14:13:18 by reratsam         ###   ########.fr       */
+/*   Updated: 2026/04/28 19:46:16 by reratsam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	builtin_exit(t_command *cmd, t_cleanup *cleanup)
 
 	ft_putendl_fd("exit", 1);
 	rl_clear_history();
-	rl_free_line_state();
 	if (!cmd->argv[1])
 		cleanup_and_exit(cleanup, g_exit_status);
 	if (!is_numeric_exit(cmd->argv[1]))
