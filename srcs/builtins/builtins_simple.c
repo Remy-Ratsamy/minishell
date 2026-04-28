@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_simple.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gechavia <gechavia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reratsam <reratsam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 11:24:28 by gechavia          #+#    #+#             */
-/*   Updated: 2026/03/13 14:28:06 by gechavia         ###   ########.fr       */
+/*   Updated: 2026/04/28 19:43:22 by reratsam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,11 @@ int	builtin_env(t_command *cmd, char **envp)
 {
 	int	i;
 
-	(void)cmd;
+	if (cmd->argv[1])
+	{
+		ft_putendl_fd("minishell: env: too many arguments", 2);
+		return (1);
+	}
 	i = 0;
 	while (envp[i])
 	{

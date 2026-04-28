@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gechavia <gechavia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reratsam <reratsam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:54:14 by gechavia          #+#    #+#             */
-/*   Updated: 2026/03/14 20:04:15 by gechavia         ###   ########.fr       */
+/*   Updated: 2026/04/28 19:18:15 by reratsam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	process_heredoc(t_token *tokens, t_cleanup *cleanup)
 						current->next->str);
 				else
 					fprintf(stderr,
-						"minishell: syntax error near unexpected token 'newline'\n");
+						"minishell: syntax error "
+						"near unexpected token 'newline'\n");
 				return (-1);
 			}
 			if (handle_single_heredoc(current, cleanup) == -1)

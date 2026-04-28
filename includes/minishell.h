@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gechavia <gechavia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reratsam <reratsam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 17:50:03 by gechavia          #+#    #+#             */
-/*   Updated: 2026/03/14 20:08:25 by gechavia         ###   ########.fr       */
+/*   Updated: 2026/04/28 19:18:01 by reratsam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,6 +242,6 @@ int						handle_single_heredoc(t_token *token,
 							t_cleanup *cleanup);
 void					init_cleanup(t_cleanup *cleanup);
 void					cleanup_iteration(t_cleanup *cleanup);
-void	heredoc_sigint(int sig);
+void					heredoc_sigint(int sig);
 
 #endif

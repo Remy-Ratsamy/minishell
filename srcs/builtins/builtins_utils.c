@@ -6,7 +6,7 @@
 /*   By: reratsam <reratsam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:34:05 by gechavia          #+#    #+#             */
-/*   Updated: 2026/04/20 15:05:46 by reratsam         ###   ########.fr       */
+/*   Updated: 2026/04/28 19:19:42 by reratsam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,30 +90,26 @@ void	sort_env(char **env)
 int	env_add(char ***envp, char *name, char *value)
 {
 	char	**new_envp;
-	char	*new_var;
 	int		i;
 	int		count;
 
 	count = 0;
 	while ((*envp)[count])
 		count++;
-	new_envp = malloc(sizeof(char *) * (count + 2));
+	new_envp = ft_calloc(count + 2, sizeof(char *));
 	if (!new_envp)
 		return (1);
 	i = 0;
 	while (i < count)
 	{
 		new_envp[i] = ft_strdup((*envp)[i]);
+		if (!new_envp[i])
+			return (ft_free_split(new_envp), 1);
 		i++;
 	}
-	new_var = ft_strjoin3(name, "=", value);
-	if (!new_var)
-	{
-		while (i-- > 0)
-			free(new_envp[i]);
-		return (free(new_envp), 1);
-	}
-	new_envp[count] = new_var;
+	new_envp[count] = ft_strjoin3(name, "=", value);
+	if (!new_envp[count])
+		return (ft_free_split(new_envp), 1);
 	new_envp[count + 1] = NULL;
 	free_envp(*envp);
 	*envp = new_envp;
