@@ -3,14 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   parser_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gechavia <gechavia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: reratsam <reratsam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 08:54:10 by gechavia          #+#    #+#             */
-/*   Updated: 2026/02/19 14:04:49 by gechavia         ###   ########.fr       */
+/*   Updated: 2026/04/28 20:06:58 by reratsam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	validate_redirections(t_token *tokens, int length)
+{
+	t_token	*current;
+	int		i;
+
+	current = tokens;
+	i = 0;
+	while (current && i < length)
+	{
+		if (is_redirection(current))
+		{
+			if (!current->next)
+				return (print_unexpected_token(), g_exit_status = 2, 0);
+			if (current->next->type != TOKEN_WORD)
+			{
+				print_parser_redir_error(current->next);
+				g_exit_status = 2;
+				return (0);
+			}
+		}
+		current = current->next;
+		i++;
+	}
+	return (1);
+}
 
 t_command	*parse_command(t_token *tokens, int length)
 {
@@ -19,6 +45,8 @@ t_command	*parse_command(t_token *tokens, int length)
 	t_redir		*head_redir;
 	t_command	*command;
 
+	if (!validate_redirections(tokens, length))
+		return (NULL);
 	count = count_tokens_word(tokens, length);
 	argv = create_argv(tokens, count, length);
 	if (!argv)

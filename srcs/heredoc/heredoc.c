@@ -6,7 +6,7 @@
 /*   By: reratsam <reratsam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:54:14 by gechavia          #+#    #+#             */
-/*   Updated: 2026/04/28 19:18:15 by reratsam         ###   ########.fr       */
+/*   Updated: 2026/04/28 20:09:10 by reratsam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,18 @@ void	heredoc_sigint(int sig)
 	}
 }
 
+static int	print_heredoc_error(t_token *token)
+{
+	if (token)
+		fprintf(stderr,
+			"minishell: syntax error near unexpected token '%s'\n", token->str);
+	else
+		fprintf(stderr,
+			"minishell: syntax error near unexpected token 'newline'\n");
+	g_exit_status = 2;
+	return (-1);
+}
+
 int	process_heredoc(t_token *tokens, t_cleanup *cleanup)
 {
 	t_token	*current;
@@ -34,17 +46,7 @@ int	process_heredoc(t_token *tokens, t_cleanup *cleanup)
 		if (current->type == TOKEN_REDIR_HEREDOC)
 		{
 			if (!current->next || current->next->type != TOKEN_WORD)
-			{
-				if (current->next)
-					fprintf(stderr,
-						"minishell: syntax error near unexpected token '%s'\n",
-						current->next->str);
-				else
-					fprintf(stderr,
-						"minishell: syntax error "
-						"near unexpected token 'newline'\n");
-				return (-1);
-			}
+				return (print_heredoc_error(current->next));
 			if (handle_single_heredoc(current, cleanup) == -1)
 				return (-1);
 		}
