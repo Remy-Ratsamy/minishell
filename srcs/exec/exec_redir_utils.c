@@ -17,8 +17,8 @@ void	print_redir_error(char *file)
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(file, 2);
 	ft_putstr_fd(": ", 2);
-	ft_putstr_fd("No such file or directory\n", 2);
-	exit(1);
+	ft_putstr_fd(strerror(errno), 2);
+	ft_putstr_fd("\n", 2);
 }
 
 void	apply_in(t_redir *redir, t_cleanup *cleanup)

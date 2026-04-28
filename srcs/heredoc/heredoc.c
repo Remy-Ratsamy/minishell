@@ -41,7 +41,7 @@ int	process_heredoc(t_token *tokens, t_cleanup *cleanup)
 						current->next->str);
 				else
 					fprintf(stderr,
-						"minishell: syntax error unexpected token'newline'\n");
+						"minishell: syntax error near unexpected token 'newline'\n");
 				return (-1);
 			}
 			if (handle_single_heredoc(current, cleanup) == -1)

@@ -68,6 +68,7 @@ static int	fork_and_wait(t_command *cmd, char ***envp,
 int	exec_command(t_command *cmd, char ***envp, t_cleanup *cleanup)
 {
 	int	saved_stdout;
+	int	saved_stdin;
 	int	ret;
 
 	if (!cmd || !cmd->argv || !cmd->argv[0])
@@ -78,10 +79,13 @@ int	exec_command(t_command *cmd, char ***envp, t_cleanup *cleanup)
 	if (is_simple_builtin(cmd->argv[0]))
 	{
 		saved_stdout = dup(STDOUT_FILENO);
+		saved_stdin = dup(STDIN_FILENO);
 		apply_redirections(cmd->redirections, cleanup);
 		ret = execute_builtin_simple(cmd, envp);
 		dup2(saved_stdout, STDOUT_FILENO);
+		dup2(saved_stdin, STDIN_FILENO);
 		close(saved_stdout);
+		close(saved_stdin);
 		return (ret);
 	}
 	return (fork_and_wait(cmd, envp, cleanup));

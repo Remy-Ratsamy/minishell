@@ -19,8 +19,6 @@ int	exec_ast(t_node *node, char ***envp, t_cleanup *cleanup)
 	status = 0;
 	if (node == NULL)
 		return (-1);
-	if (!node)
-		return (0);
 	if (node->type == NODE_COMMAND)
 		status = exec_command(node->command, envp, cleanup);
 	else if (node->type == NODE_AND)

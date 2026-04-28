@@ -99,7 +99,7 @@ int	env_add(char ***envp, char *name, char *value)
 		count++;
 	new_envp = malloc(sizeof(char *) * (count + 2));
 	if (!new_envp)
-		return (free(new_envp), 1);
+		return (1);
 	i = 0;
 	while (i < count)
 	{
@@ -108,7 +108,11 @@ int	env_add(char ***envp, char *name, char *value)
 	}
 	new_var = ft_strjoin3(name, "=", value);
 	if (!new_var)
+	{
+		while (i-- > 0)
+			free(new_envp[i]);
 		return (free(new_envp), 1);
+	}
 	new_envp[count] = new_var;
 	new_envp[count + 1] = NULL;
 	free_envp(*envp);
